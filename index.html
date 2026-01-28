@@ -6,30 +6,41 @@
 
 <style>
 body {
+  <div class="tarjeta">
   background: #eaf4ff;
   font-family: Arial, sans-serif;
   text-align: center;
-  padding-top: 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
-
 h1 {
   color: #1f3a5f;
+  font-size: 34px;
+  margin-bottom: 12px;
 }
 
 p {
   font-size: 26px;
   color: #444444;
+  max-width: 720px;
+  line-height: 1.4;
+  margin-bottom: 18px;
 }
 
 button {
-  font-size: 18px;
-  padding: 12px 25px;
-  margin: 15px;
+  font-size: 22px; /* Texto más grande */
+  padding: 16px 34px; /* Botón más alto y ancho */
+  margin: 14px; /* Espacio entre botones */
   border: none;
-  border-radius: 15px;
+  border-radius: 18px; /* Bordes más suaves */
   cursor: pointer;
   transition: transform 0.15s ease, background-color 0.15s ease;
   user-select: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15); /* Sombra elegante */
 }
 
 #si {
@@ -40,6 +51,14 @@ button {
 #no {
   background-color: #777777;
   color: white;
+}
+  .tarjeta {
+  background: white;
+  padding: 28px 22px;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  max-width: 780px;
+  width: 100%;
 }
 
 .corazon {
@@ -81,7 +100,7 @@ let frasesNo = [
   "No seas así 🥺",
   "Sabes que quieres ❤️"
 ];
-let indice = 0;
+let indice = (indice + 1) % frasesNo.length; 
 
 function crecer() {
   tamaño += 12;
@@ -127,9 +146,25 @@ function lanzarCorazones() {
 
 function acepto() {
   lanzarCorazones();
-  document.body.innerHTML = "<h1>❤️ Amorcito eres un facilote.. 🤩 te re quiero mucho 😘</h1><p>Ahora empieza algo bonito…</p>";
+
+  // Cambio suave de fondo
+  document.body.style.transition = "background 0.8s ease";
+  document.body.style.background = "#fff5f8";
+
+  // TU mensaje original (sin cambiarlo)
+  document.body.innerHTML = `
+    <div style="text-align:center; padding:40px; animation: aparecer 0.8s ease;">
+      <h1>❤️ Amorcito eres un facilote.. 🤩 te re quiero mucho 😘</h1>
+      <p>Ahora empieza algo bonito…</p>
+    </div>
+  `;
+
+  // Más corazones para efecto sorpresa
+  for (let i = 0; i < 3; i++) {
+    setTimeout(lanzarCorazones, i * 700);
+  }
 }
 </script>
-
+</div>
 </body>
 </html>
